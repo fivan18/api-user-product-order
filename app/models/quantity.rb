@@ -1,6 +1,6 @@
 class Quantity < ApplicationRecord
-    validates :quantity, presence: true
+  validates :quantity, presence: true
 
-    belongs_to :product
-    belongs_to :order
-  end
+  belongs_to :product
+  belongs_to :order
+end
