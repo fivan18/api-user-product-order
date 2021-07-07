@@ -1,8 +1,7 @@
-class DropRoutinesAndExercisesTables < ActiveRecord::Migration[6.1]
+class DropRoutinesTable < ActiveRecord::Migration[6.1]
   def change
     def up
       drop_table :routines 
-      drop_table :exercises
     end
   
     def down
