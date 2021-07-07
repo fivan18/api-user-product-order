@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :products
+  resources :users
   resources :exercises
 
   post 'login', to: 'access_tokens#create'
