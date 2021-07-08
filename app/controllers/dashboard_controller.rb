@@ -7,19 +7,21 @@ class DashboardController < ApplicationController
     orders = Order.order(created_at: :desc).first(5)
 
     sql = "
-        SELECT COUNT('orders'.'id') AS quantity,
-            strftime('%m', 'orders'.'created_at') || '-' || strftime('%Y', 'orders'.'created_at') AS month
-        FROM 'orders'
-        GROUP BY month
+        SELECT COUNT(orders.id) AS quantity,
+            DATE_PART('month', orders.created_at) AS month,
+            DATE_PART('year', orders.created_at) AS year
+        FROM orders
+        GROUP BY month, year
+        ORDER BY month
       "
     orders_per_month = ActiveRecord::Base.connection.execute(sql)
 
     sql = "
-        SELECT SUM('quantities'.'quantity') AS quantity,
-            'quantities'.'product_id' AS id,
-            'products'.'name' as name
-        FROM 'quantities' JOIN 'products' ON 'quantities'.product_id = 'products'.'id'
-        GROUP BY 'quantities'.'product_id'
+        SELECT SUM(quantities.quantity) AS quantity,
+            quantities.product_id AS id,
+            products.name as name
+        FROM quantities JOIN products ON quantities.product_id = products.id
+        GROUP BY quantities.product_id, products.name
         ORDER BY quantity DESC
         LIMIT 5
       "
