@@ -1,6 +1,6 @@
 class OrderSerializer
   include JSONAPI::Serializer
-  attributes :created_at, :products
+  attributes :created_at, :products, :quantities
 
   belongs_to :user, meta: proc { |order, _params|
     {
