@@ -1,10 +1,6 @@
-# Track API
+# Order and products API
 
-> An API to track your progress for chalisthenics routine.
-
-<p align="center">
-    <img src="image.png">
-</p>
+> An API to provide data about the orders created by a user.
 
 ## Built With
 
@@ -12,7 +8,7 @@
 
 ## Live Demo
 
-[https://evening-peak-09291.herokuapp.com/](https://evening-peak-09291.herokuapp.com/)
+[https://product-orders-api.herokuapp.com/](https://product-orders-api.herokuapp.com/)
 
 
 ## Getting Started
@@ -27,7 +23,7 @@ Make sure you have installed [Ruby 2.7.2](https://www.ruby-lang.org/en/news/2020
 
 Download the project
 
-    $ git clone https://github.com/fivan18/rails-api-tracker.git
+    $ git clone https://github.com/fivan18/api-user-product-order.git
 
 Install the dependencies
 
@@ -40,10 +36,6 @@ Install the dependencies
 ### Usage
 
 You can test the API locally with the next URL: [http://localhost:3000/](http://localhost:3000/).
-
-### Run tests
-
-    $ rspec
 
 ### Deployment
 
@@ -63,7 +55,7 @@ This project was deployed on [Heroku](https://heroku.com/). Follow [this](hhttps
 
 Contributions, issues and feature requests are welcome!
 
-Feel free to check the [issues page](https://github.com/fivan18/rails-api-tracker/issues).
+Feel free to check the [issues page](https://github.com/fivan18/api-user-product-order/issues).
 
 ## Show your support
 
