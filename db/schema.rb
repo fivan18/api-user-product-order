@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_30_183508) do
+ActiveRecord::Schema.define(version: 2021_07_07_055620) do
 
   create_table "access_tokens", force: :cascade do |t|
     t.string "token", null: false
@@ -18,13 +18,6 @@ ActiveRecord::Schema.define(version: 2021_04_30_183508) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_access_tokens_on_user_id"
-  end
-
-  create_table "books", force: :cascade do |t|
-    t.string "title"
-    t.string "author"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "exercises", force: :cascade do |t|
@@ -40,6 +33,28 @@ ActiveRecord::Schema.define(version: 2021_04_30_183508) do
     t.index ["routine_id"], name: "index_exercises_on_routine_id"
   end
 
+  create_table "orders", force: :cascade do |t|
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string "name"
+    t.float "price"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "quantities", id: false, force: :cascade do |t|
+    t.integer "product_id", null: false
+    t.integer "order_id", null: false
+    t.integer "quantity"
+    t.index ["order_id"], name: "index_quantities_on_order_id"
+    t.index ["product_id"], name: "index_quantities_on_product_id"
+  end
+
   create_table "routines", force: :cascade do |t|
     t.date "day", null: false
     t.integer "user_id"
@@ -53,9 +68,14 @@ ActiveRecord::Schema.define(version: 2021_04_30_183508) do
     t.string "encrypted_password"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "first_name"
+    t.string "last_name"
+    t.string "initials"
+    t.string "email"
   end
 
   add_foreign_key "access_tokens", "users"
   add_foreign_key "exercises", "routines"
+  add_foreign_key "orders", "users"
   add_foreign_key "routines", "users"
 end
