@@ -4,7 +4,7 @@ class DashboardController < ApplicationController
   def index # rubocop:disable Metrics/MethodLength
     users = UserSerializer.new(User.order(created_at: :desc).first(5))
     products = ProductSerializer.new(Product.order(created_at: :desc).first(5))
-    orders = Order.order(created_at: :desc).first(5)
+    orders = OrderSerializer.new(Order.order(created_at: :desc).first(5))
 
     sql = "
         SELECT COUNT(orders.id) AS quantity,
